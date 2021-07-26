@@ -104,3 +104,28 @@ mvn sonar:sonar \
 ```
 Entregado por `http://localhost:8888/dashboard?id=integrationjacoco&selectedTutorial=manual`
 
+### Actualización LUN 26 Julio 2021
+
+`<sonar.jacoco.reportPath>` se cambia por `<sonar.coverage.jacoco.xmlReportPaths>`, es básicamente, de donde se cuelga `SonarQube`, para mostrar el reporte. 
+
+```xml
+    <properties>
+    <java.version>11</java.version>
+    <!-- JaCoCo Properties -->
+    <jacoco.version>0.8.6</jacoco.version>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.exclusions>**/JacocoApp*.java, **/Principal*.java</sonar.exclusions>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.language>java</sonar.language>
+</properties>
+```
+### Exclusiones
+
+Como se pudo ver, las exclusiones de archivos se detallan en: 
+`<sonar.exclusions>**/JacocoApp*.java, **/Principal*.java</sonar.exclusions>`, de esta forma, no son considerados en el reporte de `JaCoCo`, entonces no son evaluados tanto en calidad como en covertura.
+
+#### Documentaciones consultadas:
+
++ [Solución Stack Over Flow Para excluir sonar.](https://stackoverflow.com/questions/12135939/how-to-make-sonar-ignore-some-classes-for-codecoverage-metric)
++ [Solución exclusión Baeldung (Solución con archivo properties).](https://www.baeldung.com/sonar-exclude-violations)
