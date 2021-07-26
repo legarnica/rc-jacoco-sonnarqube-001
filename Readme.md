@@ -92,6 +92,15 @@ Con esto al ejecutar:
 ```shell
 mvn clean verify
 ```
+Se genera el reporte en sites.
 
+Para la integración de sonarqube, hay que ir a generar el token en el servidor de sonarquebe, con eso en propiedades (cmd + ,), buscar plugins y conectar con nuestro servidor. Ese token hay que agregarlo en el ide. Luego en el servidor, hay que agregar un nuevo proyecto y con el token lo conectamos y nos entrega el srcript de ejecución por consola;
 
+```shell
+mvn sonar:sonar \
+  -Dsonar.projectKey=integrationjacoco \
+  -Dsonar.host.url=http://localhost:8888 \
+  -Dsonar.login=b60d3e5c2d44a6d20bfa762438a7c6b81f87e3b6
+```
+Entregado por `http://localhost:8888/dashboard?id=integrationjacoco&selectedTutorial=manual`
 
